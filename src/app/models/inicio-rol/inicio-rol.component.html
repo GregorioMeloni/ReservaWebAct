@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRUD Rol</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="navbar-brand">
+      Agregar/Modificar/Eliminar/Consultar Rol
+    </div>
+  </nav>
+  <br>
+  <br>
+
+  <div class="table-container">
+    <table class="table table-striped table-bordered table-hover table-light table-fixed">
+      <colgroup>
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="header-cell">Índice</th>
+          <th class="header-cell">Nombre</th>
+          <th class="header-cell">Descripción</th>
+          <th class="header-cell">Color</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rol of rolArray; let indice = index" (click)="openForEdit(rol)" [class.active]="rol == selectedRol">
+          <td>{{ rol.id }}.</td>
+          <td>{{ rol.nombre }}</td>
+          <td>{{ rol.descripcion }}</td>
+          <td>{{ rol.color }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1500 mt-2">
+          <div class="card mt-3">
+            <div class="card-body">
+              <div class="card-title">
+                <strong>Agregar/Modificar/Eliminar Rol:</strong>
+              </div>
+              <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" [(ngModel)]="selectedRol.nombre" id="nombre" placeholder="Inserta un nombre" class="form-control">
+                <div class="text-danger">{{ nombreError }}</div>
+              </div>
+              <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" [(ngModel)]="selectedRol.descripcion" id="descripcion" placeholder="Inserta una descripción" class="form-control">
+                <div class="text-danger">{{ descripcionError }}</div>
+              </div>
+              <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" [(ngModel)]="selectedRol.color" id="color" placeholder="Inserta un color" class="form-control">
+                <div class="text-danger">{{ colorError }}</div>
+              </div>
+              <br>
+              <div class="form-group">
+                <div class="btn-group">
+                  <button *ngIf="!isItemSelected" (click)="addOrEdit()" class="btn btn-primary mr-2">Agregar</button>
+                  <button *ngIf="selectedRol.id !== 0 && isItemSelected" class="btn btn-danger delete-button" (click)="delete()">Eliminar</button>
+                  <button *ngIf="isItemSelected" (click)="limpiar()" class="btn btn-primary">Limpiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

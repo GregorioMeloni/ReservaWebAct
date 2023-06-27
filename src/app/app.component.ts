@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+//import { RolComponent } from './models/rol/rol.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ReservaWebAct';
 }
